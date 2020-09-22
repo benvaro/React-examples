@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import CardList from './components/card-list';
+
+const App = ()=>{
+  
+  const data = [
+    {text: 'Murzik', src: 'https://robohash.org/murzik?set=set4&size=100x100'},
+    {text: 'Tom', src: 'https://robohash.org/tom?set=set4&size=100x100'},
+    {text: 'Linux', src: 'https://robohash.org/linux?set=set4&size=100x100'}
+  ];
+
+  return (
+    <div className='row justify-content-around'>
+      <CardList data={data}/>
+    </div>)
+}
+
+ReactDOM.render(<App/>, document.querySelector("#root"));
