@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Card from '../card'
 
-const CardList = ({data})=>{
+export default class CardList extends Component {
 
-    const cards = data.map(item => {
-        
-        return <Card info={item} />;
-    })
-    
-    return ( 
-    <>
-        {cards}
-    </>    
-    );
+    render() {
+        const { data, onDblDelete } = this.props;
+        const cards = data.map(item => {
+
+            return <Card key={item.id} info={item} onDblDelete={(id) => onDblDelete(item.id)} />;
+        })
+
+        return (
+            <>
+                {cards}
+            </>
+        );
+    }
 }
-
-export default CardList;
