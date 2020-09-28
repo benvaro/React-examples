@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import CardList from '../card-list';
+import AddForm from '../add-form';
 
 import './app.css';
 
@@ -54,7 +55,15 @@ export default class App extends Component {
     }
 
     render() {
-        return (<div className='row justify-content-around'>
-            <CardList data={this.state.data} onDblDelete={(id) => this.deleteItem(id)} /> </div>)
+        return (
+            <>
+                <div className='row justify-content-around mb-4'>
+                    <CardList data={this.state.data}
+                        onDblDelete={(id) => this.deleteItem(id)}
+                        onAdd={this.addItem}
+                    />
+                </div>
+                <AddForm onAdd={this.addItem} />
+            </>)
     }
 }
