@@ -14,7 +14,12 @@ export default class CardList extends Component {
         return (
             <>
                 {cards}
+                <div>
+                    <button className="btn btn-primary mt-4">Add cat</button>
+                </div>
             </>
+
         );
     }
 }
+

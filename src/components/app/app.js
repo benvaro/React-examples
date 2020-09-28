@@ -5,7 +5,7 @@ import CardList from '../card-list';
 import './app.css';
 
 export default class App extends Component {
-
+    rand = 1000;
     state = {
         data: [{
             id: 1,
@@ -39,6 +39,20 @@ export default class App extends Component {
 
         this.setState((state) => { return { data: [...dataBefore, ...dataAfter] }; });
     }
+
+    addItem = (text) => {
+        let { data } = this.state;
+
+        this.setState(({ data }) => {
+            const newItem = {
+                id: this.rand++,
+                text: text,
+                src: `https://robohash.org/${text}?set=set4&size=100x100`
+            };
+            return { data: [...data, newItem] }
+        })
+    }
+
     render() {
         return (<div className='row justify-content-around'>
             <CardList data={this.state.data} onDblDelete={(id) => this.deleteItem(id)} /> </div>)

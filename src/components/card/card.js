@@ -40,9 +40,8 @@ export default class Card extends Component {
     }
     return (
       <div onClick={this.onClickEvent}
-        onDoubleClick={onDblDelete}
         className={className} >
-        <Header text={info.text} italic />
+        <Header onDblDelete={onDblDelete} text={info.text} italic />
         <Main src={info.src} />
         <Footer networks={info.networks} />
       </div>
