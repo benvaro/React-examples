@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 import CardList from '../card-list';
 import AddForm from '../add-form';
@@ -59,13 +59,13 @@ export default class App extends Component {
     render() {
         return (
             <>
-                <nav>
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Add</a></li>
-                    </ul>
-                </nav>
                 <Router>
+                    <nav>
+                        <ul>
+                            <li><Link to="/Home">Home</Link></li>
+                            <li><Link to="/Add">Add</Link></li>
+                        </ul>
+                    </nav>
                     <div className='row justify-content-around mb-4'>
                         <Route path="/Home" render={() => {
                             return <CardList data={this.state.data}
@@ -78,7 +78,6 @@ export default class App extends Component {
                     <Route path="/Add" render={() => {
                         return <AddForm onAdd={this.addItem} />
                     }} />
-
                 </Router>
             </>)
     }
