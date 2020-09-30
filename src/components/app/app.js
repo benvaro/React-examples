@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import CardList from '../card-list';
 import AddForm from '../add-form';
@@ -30,6 +31,7 @@ export default class App extends Component {
         }
         ]
     };
+
     deleteItem = (id) => {
         let { data } = this.state;
         let index = data.findIndex(x => x.id === id);
@@ -57,13 +59,27 @@ export default class App extends Component {
     render() {
         return (
             <>
-                <div className='row justify-content-around mb-4'>
-                    <CardList data={this.state.data}
-                        onDblDelete={(id) => this.deleteItem(id)}
-                        onAdd={this.addItem}
-                    />
-                </div>
-                <AddForm onAdd={this.addItem} />
+                <nav>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Add</a></li>
+                    </ul>
+                </nav>
+                <Router>
+                    <div className='row justify-content-around mb-4'>
+                        <Route path="/Home" render={() => {
+                            return <CardList data={this.state.data}
+                                onDblDelete={(id) => this.deleteItem(id)}
+                                onAdd={this.addItem}
+                            />
+                        }
+                        } />
+                    </div>
+                    <Route path="/Add" render={() => {
+                        return <AddForm onAdd={this.addItem} />
+                    }} />
+
+                </Router>
             </>)
     }
 }
